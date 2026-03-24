@@ -1,4 +1,4 @@
-package boletin1;
+package EJ01;
 
 class HoraExacta extends Hora {
     private int segundos;

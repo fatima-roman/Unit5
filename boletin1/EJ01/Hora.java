@@ -1,4 +1,4 @@
-package boletin1;
+package EJ01;
 
 public class Hora {
     private int hora;
