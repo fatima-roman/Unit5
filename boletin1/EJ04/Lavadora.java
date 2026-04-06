@@ -1,6 +1,6 @@
 package EJ04;
 
-public class Lavadora extends Electrodomestico {
+class Lavadora extends Electrodomestico {
 
 	private double carga = 5; 
 	

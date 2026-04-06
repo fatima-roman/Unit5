@@ -1,6 +1,6 @@
 package EJ04;
 
-public class Television extends Electrodomestico {
+class Television extends Electrodomestico {
 	
 	private double resolucion = 20; 
 	private boolean TDT = false; 
