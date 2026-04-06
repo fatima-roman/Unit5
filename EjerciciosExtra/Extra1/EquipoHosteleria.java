@@ -7,46 +7,70 @@ abstract class EquipoHosteleria {
 	protected double precioBase; 
 	protected double consumoHora; 
 	protected int aniosGarantia;
+	private boolean usoIntensivo;
+	private double potencia;
 	
 	
-	public int getId() {
-		return id;
-	}
+	// Getters
+	public int getId() { return id; }
+	public String getMarca() { return marca; }
+	public String getModelo() { return modelo; }
+	public double getPrecioBase() { return precioBase; }
+	public double getConsumoHora() { return consumoHora; }
+	public int getAniosGarantia() { return aniosGarantia; }
+	public boolean isUsoIntensivo() { return usoIntensivo; }
+	public double getPotencia() { return potencia; }
+
+	// Setters con validación
 	public void setId(int id) {
-		if (id <0) {
-			this.id = 000; 
-		}
+	    if (id >=0) {
+	        this.id = id;
+	    }
 	}
-	public String getMarca() {
-		return marca;
-	}
+
 	public void setMarca(String marca) {
-		this.marca = marca;
+	    if (marca != null && !marca.trim().isEmpty()) {
+	        this.marca = marca.trim();
+	    }
 	}
-	public String getModelo() {
-		return modelo;
-	}
+
 	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	    if (modelo != null && !modelo.trim().isEmpty()) {
+	        this.modelo = modelo.trim();
+	    }
 	}
-	public double getPrecioBase() {
-		return precioBase;
-	}
+
 	public void setPrecioBase(double precioBase) {
-		this.precioBase = precioBase;
+	    if (precioBase > 0) {
+	        this.precioBase = precioBase;
+	    }
 	}
-	public double getConsumoHora() {
-		return consumoHora;
-	}
+
 	public void setConsumoHora(double consumoHora) {
-		this.consumoHora = consumoHora;
+	    if (consumoHora >= 0) {
+	        this.consumoHora = consumoHora;
+	    }
 	}
-	public int getAniosGarantia() {
-		return aniosGarantia;
-	}
+
 	public void setAniosGarantia(int aniosGarantia) {
-		this.aniosGarantia = aniosGarantia;
-	} 
+	    if (aniosGarantia >= 0) {
+	        this.aniosGarantia = aniosGarantia;
+	    }
+	}
+
+	public void setUsoIntensivo(boolean usoIntensivo) {
+	    this.usoIntensivo = usoIntensivo;
+	}
+
+	public void setPotencia(double potencia) {
+	    if (potencia > 0) {
+	        this.potencia = potencia;
+	    }
+	}
 	
+	
+	abstract double calcularCosteMantenimientoAnual() {
+		
+	}
 	
 }
