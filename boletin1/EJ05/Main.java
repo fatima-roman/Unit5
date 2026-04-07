@@ -34,10 +34,8 @@ private static ArrayList<Poligono> poligonos = new ArrayList<>();
 		System.out.println("Introducir un rectángulo");
 		double lado1= pedirLado(reader, 1);
 		double lado2= pedirLado(reader, 2);
-		
-		Rectangulo rectangulo = new Rectangulo(lado1,lado2);
-		
-		poligonos.add(rectangulo);
+				
+		poligonos.add(new Rectangulo(lado1, lado2));
 	}
 	
 	private static void pedirTriangulo() {
@@ -45,10 +43,8 @@ private static ArrayList<Poligono> poligonos = new ArrayList<>();
 		double lado1= pedirLado(reader, 1);
 		double lado2= pedirLado(reader, 2);
 		double lado3= pedirLado(reader, 3);
-		
-		Triangulo triangulo = new Triangulo(lado1,lado2,lado3);
-		
-		poligonos.add(triangulo);
+
+		poligonos.add(new Triangulo(lado1,lado2,lado3));
 	}
 	
 	private static void mostrarDatos() {
