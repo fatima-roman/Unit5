@@ -11,6 +11,15 @@ abstract class EquipoHosteleria {
 	private double potencia;
 	
 	
+	public EquipoHosteleria(int id, String marca, String modelo, double precioBase, double consumoHora, int aniosGarantia) {
+        setAniosGarantia(aniosGarantia);
+        setId(id);
+        setMarca(marca);
+        setModelo(modelo);
+        setPrecioBase(precioBase);
+        setConsumoHora(consumoHora);
+    }	
+	
 	// Getters
 	public int getId() { return id; }
 	public String getMarca() { return marca; }
@@ -69,8 +78,24 @@ abstract class EquipoHosteleria {
 	}
 	
 	
-	abstract double calcularCosteMantenimientoAnual() {
-		
-	}
-	
-}
+	 public double calcularPrecioFinal() {
+	        double incrementoGarantia = aniosGarantia * 50;
+	        double incrementoConsumo = consumoHora * 10;
+	        return precioBase + incrementoGarantia + incrementoConsumo;
+	    }
+
+	    public abstract double calcularCosteMantenimientoAnual();
+
+	    @Override
+	   public String toString() {
+	       return "EquipoHosteleria{" +
+	           "id='" + id + '\'' +
+	             ", marca='" + marca + '\'' +
+	             		", modelo='" + modelo + '\'' +
+	                ", precioBase=" + precioBase +
+	                ", consumoHora=" + consumoHora +
+	                ", aniosGarantia=" + aniosGarantia +
+	                '}';
+	    }
+	}	
+
