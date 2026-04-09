@@ -1,6 +1,103 @@
 package Extra1;
 
-abstract class EquipoHosteleria {
+public abstract class EquipoHosteleria {
+    private String id;
+    private String marca;
+    private String modelo;
+    private double precioBase;
+    private final double consumoHora;
+    private int aniosGarantia;
+    private double horasEncendidoDia;
+
+    public EquipoHosteleria(String id, String marca, String modelo,
+                            double precioBase, double consumoHora,
+                            int aniosGarantia, double horasEncendidoDia) {
+        this.id = id;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.precioBase = precioBase;
+        this.consumoHora = consumoHora;
+        this.aniosGarantia = aniosGarantia;
+        this.horasEncendidoDia = horasEncendidoDia;
+    }
+
+    public double calcularConsumoAnual() {
+        return consumoHora * horasEncendidoDia * 365;
+    }
+
+    public double calcularPrecioBaseAjustado() {
+        return precioBase + (consumoHora * 10) + (aniosGarantia * 25);
+    }
+
+    public abstract double calcularPrecioFinal();
+    public abstract double calcularCosteMantenimientoAnual();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public double getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    public double getConsumoHora() {
+        return consumoHora;
+    }
+
+    public int getAniosGarantia() {
+        return aniosGarantia;
+    }
+
+    public void setAniosGarantia(int aniosGarantia) {
+        this.aniosGarantia = aniosGarantia;
+    }
+
+    public double getHorasEncendidoDia() {
+        return horasEncendidoDia;
+    }
+
+    public void setHorasEncendidoDia(double horasEncendidoDia) {
+        this.horasEncendidoDia = horasEncendidoDia;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                " [id=" + id +
+                ", marca=" + marca +
+                ", modelo=" + modelo +
+                ", precioBase=" + precioBase +
+                ", consumoHora=" + consumoHora +
+                ", añosGarantia=" + aniosGarantia +
+                ", horas/día=" + horasEncendidoDia + "]";
+    }
+}
+
+/*abstract class EquipoHosteleria {
 	protected int id; 
 	protected String marca; 
 	protected String modelo; 
@@ -97,5 +194,5 @@ abstract class EquipoHosteleria {
 	                ", aniosGarantia=" + aniosGarantia +
 	                '}';
 	    }
-	}	
+	}	*/
 
