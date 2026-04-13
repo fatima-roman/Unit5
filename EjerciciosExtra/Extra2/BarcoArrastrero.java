@@ -75,4 +75,9 @@ public class BarcoArrastrero extends EmbarcacionPesquera{
 	        calcularCapturaMaximaDiaria(), calcularConsumoEstimado()); 
 	}
 	
+    protected double eficiencia() {
+        return calcularConsumoEstimado() > 0 ? 
+               calcularCapturaMaximaDiaria() / calcularConsumoEstimado() : 0;
+    }
+	
 }
