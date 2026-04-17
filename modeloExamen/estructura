@@ -1,0 +1,108 @@
+DispositivoInteligente <<interface>>
+-----------------------------------------------------------
+encender()
+
+apagar()
+
+toString(): String
+
+equals(other: DispositivoInteligente): boolean
+
+-----------------------------------------------------------
+AjustableNivel implements DispositivoInteligente
+-----------------------------------------------------------
+subirNivel()
+
+bajarNivel()
+
+heredados:
+
+encender()
+
+apagar()
+
+toString(): String
+
+----------------------------------------------------------------
+AltavozInteligente implements AjustableNivel
+----------------------------------------------------------------
+nombreAsistente: String
+volumen: int = 30
+subirVolumen()
+
+bajarVolumen()
+
+getAsistente(): String
+
+hereda:
+
+encender()
+
+apagar()
+
+LuzInteligente implements AjustableNivel
+
+color: String
+brillo: int = 50
+subirBrillo()
+
+bajarBrillo()
+
+cambiarColor(nuevoColor: String)
+
+hereda:
+
+encender()
+
+apagar()
+
+Alertable implements DispositivoInteligente
+
+alertaActiva: boolean
+mensajeAlerta: String
+activarAlerta(mensaje: String)
+
+desactivarAlerta()
+
+tieneAlertaActiva(): boolean
+
+heredados:
+
+encender()
+
+apagar()
+
+Termostato implements Alertable
+
+temperaturaObjetivo: double
+modoFuncionamiento: String
+cambiarModo()
+
+hereda:
+
+activarAlerta()
+
+desactivarAlerta()
+
+encender()
+
+apagar()
+
+CamaraSeguridad implements Alertable
+
+resolucion: String
+grabando: boolean
+iniciarGrabacion()
+
+detenerGrabacion()
+
+hereda:
+
+activarAlerta()
+
+desactivarAlerta()
+
+encender()
+
+apagar()
+
