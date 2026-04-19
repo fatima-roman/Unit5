@@ -1,15 +1,18 @@
 package domotica;
 
 /**
- * Cámara de seguridad que extiende Dispositivo.
+ * Otra subclase que implementa la misma interfaz Alertable.
+ *
+ * Esto demuestra que distintas clases pueden compartir una capacidad
+ * aunque cada una tenga su propia lógica interna.
  */
-public class CamaraSeguridad extends Dispositivo {
-    
-    private String resolucion;
-    private boolean grabando;
-    private boolean alertaActiva;
-    private String mensajeAlerta;
-    
+public class CamaraSeguridad extends Dispositivo implements Alertable {
+
+    protected String resolucion;
+    protected boolean grabando;
+    protected boolean alertaActiva;
+    protected String mensajeAlerta;
+
     public CamaraSeguridad(String nombreComercial, String marca, double precio, String resolucion) {
         super(nombreComercial, marca, precio);
         this.resolucion = resolucion;
@@ -17,47 +20,69 @@ public class CamaraSeguridad extends Dispositivo {
         this.alertaActiva = false;
         this.mensajeAlerta = "";
     }
-    
+
+    public String getResolucion() {
+        return resolucion;
+    }
+
+    public boolean isGrabando() {
+        return grabando;
+    }
+
+    /**
+     * Método específico de esta subclase.
+     *
+     * No viene de ninguna interfaz, sino de la propia lógica del tipo.
+     */
     public void iniciarGrabacion() throws DispositivoApagadoException {
-        comprobarEncendido();
+        if (!encendido) {
+            throw new DispositivoApagadoException();
+        }
+
         grabando = true;
     }
-    
+
     public void detenerGrabacion() {
         grabando = false;
     }
-    
+
+    @Override
     public void activarAlerta(String mensaje) throws DispositivoApagadoException {
-        comprobarEncendido();
+        if (!encendido) {
+            throw new DispositivoApagadoException();
+        }
+
         alertaActiva = true;
         mensajeAlerta = mensaje;
     }
-    
+
+    @Override
     public void desactivarAlerta() throws DispositivoApagadoException {
-        comprobarEncendido();
+        if (!encendido) {
+            throw new DispositivoApagadoException();
+        }
+
         alertaActiva = false;
         mensajeAlerta = "";
     }
-    
+
+    @Override
     public boolean hayAlertaActiva() {
         return alertaActiva;
     }
-    
-    private void comprobarEncendido() throws DispositivoApagadoException {
-        if (!isEncendido()) {
-            throw new DispositivoApagadoException();
-        }
+
+    public String getMensajeAlerta() {
+        return mensajeAlerta;
     }
-    
-    // Getters
-    public String getResolucion() { return resolucion; }
-    public boolean isGrabando() { return grabando; }
-    public String getMensajeAlerta() { return mensajeAlerta; }
-    
+
     @Override
     public String toString() {
-        return super.toString() + ", resolucion='" + resolucion + 
-               "', grabando=" + grabando + ", alerta=" + alertaActiva + 
-               ", msg='" + mensajeAlerta + "'";
+        return "CamaraSeguridad{"
+                + super.toString()
+                + ", resolucion=" + resolucion
+                + ", grabando=" + grabando
+                + ", alertaActiva=" + alertaActiva
+                + ", mensajeAlerta=" + mensajeAlerta
+                + "}";
     }
 }

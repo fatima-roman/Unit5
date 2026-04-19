@@ -1,49 +1,72 @@
 package domotica;
 
 /**
- * Luz inteligente que extiende Dispositivo.
+ * Otra subclase concreta.
+ *
+ * Este ejemplo muestra cómo dos clases distintas
+ * pueden implementar la misma interfaz con comportamientos diferentes.
  */
-public class LuzInteligente extends Dispositivo {
-    
-    private String color;
-    private int brillo;
-    
-    private static final int BRILLO_DEFAULT = 50;
-    private static final int BRILLO_MIN = 0;
-    private static final int BRILLO_MAX = 100;
-    private static final int INCREMENTO = 10;
-    
+public class LuzInteligente extends Dispositivo implements Ajustable {
+
+    protected String color;
+    protected int brillo;
+
     public LuzInteligente(String nombreComercial, String marca, double precio, String color) {
         super(nombreComercial, marca, precio);
         this.color = color;
-        this.brillo = BRILLO_DEFAULT;
+        this.brillo = 50;
     }
-    
-    public void subir() throws DispositivoApagadoException {
-        comprobarEncendido();
-        brillo = Math.min(BRILLO_MAX, brillo + INCREMENTO);
+
+    public String getColor() {
+        return color;
     }
-    
-    public void bajar() throws DispositivoApagadoException {
-        comprobarEncendido();
-        brillo = Math.max(BRILLO_MIN, brillo - INCREMENTO);
-    }
-    
-    private void comprobarEncendido() throws DispositivoApagadoException {
-        if (!isEncendido()) {
-            throw new DispositivoApagadoException();
-        }
-    }
-    
+
+    /**
+     * Un setter permite modificar un atributo de forma controlada.
+     *
+     * Los setters suelen usarse cuando el objeto necesita cambiar
+     * algunos datos después de crearse.
+     */
     public void setColor(String color) {
         this.color = color;
     }
-    
-    public String getColor() { return color; }
-    public int getBrillo() { return brillo; }
-    
+
+    public int getBrillo() {
+        return brillo;
+    }
+
+    @Override
+    public void subir() throws DispositivoApagadoException {
+        if (!encendido) {
+            throw new DispositivoApagadoException();
+        }
+
+        brillo += 10;
+
+        if (brillo > 100) {
+            brillo = 100;
+        }
+    }
+
+    @Override
+    public void bajar() throws DispositivoApagadoException {
+        if (!encendido) {
+            throw new DispositivoApagadoException();
+        }
+
+        brillo -= 10;
+
+        if (brillo < 0) {
+            brillo = 0;
+        }
+    }
+
     @Override
     public String toString() {
-        return super.toString() + ", color='" + color + "', brillo=" + brillo + "}";
+        return "LuzInteligente{"
+                + super.toString()
+                + ", color=" + color
+                + ", brillo=" + brillo
+                + "}";
     }
 }
