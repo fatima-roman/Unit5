@@ -1,108 +1,93 @@
-DispositivoInteligente <<interface>>
------------------------------------------------------------
-encender()
+================================================================================
+  ANÁLISIS Y DISEÑO - EXAMEN UNIDAD 5 - DOMÓTICA
+================================================================================
 
-apagar()
+1. ANÁLISIS 
 
-toString(): String
+SUPERCLASE: Dispositivo
+  Atributos (protected, heredables):
+    - nombreComercial    : String
+    - marca              : String  
+    - precio             : double
+    - encendido          : boolean
 
-equals(other: DispositivoInteligente): boolean
+  Valores por defecto:
+    - encendido = false
 
------------------------------------------------------------
-AjustableNivel implements DispositivoInteligente
------------------------------------------------------------
-subirNivel()
+  Constructores:
+    1. Dispositivo(nombreComercial, marca, precio)
+         encendido toma valor por defecto (false)
 
-bajarNivel()
+  Métodos:
+    - encender() : void
+    - apagar()   : void
+    - getters todos los atributos
+    - toString() : String (toda info)
+    - equals()   : boolean (nombre+marca)
+    - compareTo(Dispositivo) : int (por precio)
 
-heredados:
+SUBCLASES que extienden Dispositivo:
 
-encender()
+AltavozInteligente:
+  Atributos propios:
+    - asistente : String
+    - volumen   : int = 30 (0-100)
 
-apagar()
+  Métodos:
+    - subir()  : void (+5, throws si apagado)
+    - bajar()  : void (-5, throws si apagado)
+    - getters
 
-toString(): String
+LuzInteligente:  
+  Atributos propios:
+    - color  : String
+    - brillo : int = 50 (0-100)
 
-----------------------------------------------------------------
-AltavozInteligente implements AjustableNivel
-----------------------------------------------------------------
-nombreAsistente: String
-volumen: int = 30
-subirVolumen()
+  Métodos:
+    - subir()  : void (+10)
+    - bajar()  : void (-10) 
+    - setColor(): void
+    - getters
 
-bajarVolumen()
+Termostato:
+  Atributos propios:
+    - temperaturaObjetivo : double
+    - modo                : ModoTermostato
+    - alertaActiva        : boolean
+    - mensajeAlerta       : String
 
-getAsistente(): String
+  Métodos:
+    - cambiarModo()
+    - activarAlerta(String)
+    - desactivarAlerta()
+    - hayAlertaActiva(): boolean
+    - getters/setters
 
-hereda:
+CamaraSeguridad:
+  Atributos propios:
+    - resolucion   : String
+    - grabando     : boolean
+    - alertaActiva : boolean  
+    - mensajeAlerta: String
 
-encender()
+  Métodos:
+    - iniciarGrabacion()
+    - detenerGrabacion()
+    - activarAlerta(String)
+    - desactivarAlerta()
+    - hayAlertaActiva(): boolean
+    - getters
 
-apagar()
+EXCEPCIÓN: DispositivoApagadoException extends Exception
 
-LuzInteligente implements AjustableNivel
+ENUM: ModoTermostato {CALEFACCION, REFRIGERACION}
 
-color: String
-brillo: int = 50
-subirBrillo()
+CLASE PRINCIPAL: Main
+  - Array Dispositivo[] con 1 de cada tipo
+  - Arrays.sort() por precio
+  - Recorrer: encender → acciones con instanceof → imprimir
+  - Totales por tipo con instanceof
+  - Prueba error: apagar altavoz → subir()
 
-bajarBrillo()
-
-cambiarColor(nuevoColor: String)
-
-hereda:
-
-encender()
-
-apagar()
-
-Alertable implements DispositivoInteligente
-
-alertaActiva: boolean
-mensajeAlerta: String
-activarAlerta(mensaje: String)
-
-desactivarAlerta()
-
-tieneAlertaActiva(): boolean
-
-heredados:
-
-encender()
-
-apagar()
-
-Termostato implements Alertable
-
-temperaturaObjetivo: double
-modoFuncionamiento: String
-cambiarModo()
-
-hereda:
-
-activarAlerta()
-
-desactivarAlerta()
-
-encender()
-
-apagar()
-
-CamaraSeguridad implements Alertable
-
-resolucion: String
-grabando: boolean
-iniciarGrabacion()
-
-detenerGrabacion()
-
-hereda:
-
-activarAlerta()
-
-desactivarAlerta()
-
-encender()
-
-apagar()
-
+2. DISEÑO
+[Diagrama ASCII igual que profesor pero adaptado]
